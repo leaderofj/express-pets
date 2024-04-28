@@ -130,6 +130,9 @@
                 <span class="pet-name">
                   <%= pet.name %>
                 </span>
+                <button onclick="openOverlay(this)" class="pet-contact-btn">
+                  <img src="/images/mailto.svg">
+                </button>
               </h3>
               <p class="pet-description">
                 <%= pet.description %>
@@ -159,7 +162,7 @@
     <p>&copy; 2023 Fake Adoption Center. All rights reserved.</p>
   </footer>
 
-  <div class="form-overlay">
+  <div class="form-overlay" style="display: none;">
     <div class="form-overlay-inner">
       <form class="form-content">
         <input type="text" id="name" placeholder="Name" autocomplete="off" class="form-field">

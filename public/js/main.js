@@ -33,3 +33,9 @@ function handleButtonClick(e) {
     }
   })
 }
+
+document.querySelector(".form-overlay").style.display = ""
+
+function openOverlay(el) {
+  document.querySelector(".form-overlay").classList.add("form-overlay--is-visible")
+}
