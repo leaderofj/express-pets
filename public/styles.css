@@ -462,6 +462,7 @@ textarea.form-field {
 
 
 .form-overlay-inner {
+  position: relative;
   max-width: 880px;
   box-shadow: 0 0 10px 5px rgba(0, 0, 0, .07);
   background-color: #fff;
@@ -548,4 +549,35 @@ textarea.form-field {
 
 .pet-contact-btn:hover {
   opacity: 1;
+}
+
+.thank-you {
+  opacity: 0;
+  visibility: hidden;
+  z-index: 102;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color: #fff;
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  transition: all 0.3s ease-out;
+}
+
+.thank-you--visible {
+  opacity: 1;
+  visibility: visible;
+}
+
+.thank-you p {
+  align-self: center;
+  font-size: 1.4rem;
+}
+
+.thank-you img {
+  position: relative;
+  top: 4px;
 }
