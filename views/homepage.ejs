@@ -130,7 +130,7 @@
                 <span class="pet-name">
                   <%= pet.name %>
                 </span>
-                <button onclick="openOverlay(this)" class="pet-contact-btn">
+                <button data-id="<%= pet._id %>" onclick="openOverlay(this)" class="pet-contact-btn">
                   <img src="/images/mailto.svg">
                 </button>
               </h3>
@@ -166,7 +166,7 @@
     <div class="form-overlay-inner">
       <form class="form-content">
         <input type="text" id="name" placeholder="Name" autocomplete="off" class="form-field">
-        <input type="text" id="Email" placeholder="Email Adress" autocomplete="off" class="form-field">
+        <input type="text" id="email" placeholder="Email Adress" autocomplete="off" class="form-field">
         <input type="text" id="secret" placeholder="What is the word for a baby dog?" autocomplete="off"
           class="form-field">
         <textarea id="comment" class="form-field" placeholder="Comment (Optional)"></textarea>
@@ -177,7 +177,7 @@
       </form>
       <div class="form-photo">
         <img src="/images/fallback.jpg">
-        <p>Thank you for your interest in <strong>Barksalot</strong>.</p>
+        <p>Thank you for your interest in <strong>Barksalot</strong></p>
       </div>
       <div class="thank-you"></div>
     </div>
