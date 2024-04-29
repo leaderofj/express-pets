@@ -54,7 +54,7 @@ document.querySelector(".form-content").addEventListener("submit", async functio
   e.preventDefault()
 
   const userValues = {
-    petid: e.target.dataset.id,
+    petId: e.target.dataset.id,
     name: document.querySelector("#name").value,
     email: document.querySelector("#email").value,
     secret: document.querySelector("#secret").value,
