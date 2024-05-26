@@ -1,5 +1,7 @@
 const validator = require("validator")
 const nodemailer = require("nodemailer")
+const formData = require('form-data');
+const Mailgun = require('mailgun.js');
 const { ObjectId } = require("mongodb")
 const petsCollection = require("../db").db().collection("pets")
 const contactsCollection = require("../db").db().collection("contacts")
@@ -55,6 +57,38 @@ exports.submitContact = async function (req, res, next) {
     }
     console.log(ourObject)
 
+
+    const mailgun = new Mailgun(formData);
+    const mg = mailgun.client({ username: 'api', key: process.env.MAILGUNAPIKEY });
+
+    mg.messages.create(process.env.MAILGUNDOMAIN, {
+        from: "petadoption@localhost",
+        to: [ourObject.email],
+        subject: `Thank you for your interest in ${doesPetExist.name}`,
+        html: `<h3 style="color: purple; font-size: 30px; font-weight: normal">Thank you!</h3>
+            <p>We appreciate your interest in ${doesPetExist.name} and one of our staff members will reach out to your shortly! Below is a copy of the message you sent us for your personal records:</p>
+            <p><em>${ourObject.comment}</em></p>
+            `,
+        // text: `Name: ${ourObject.name}\nEmail: ${ourObject.email}\nComment: ${ourObject.comment}`
+    })
+        .then(msg => console.log(msg)) // logs response data
+        .catch(err => console.log(err)); // lo
+
+    mg.messages.create(process.env.MAILGUNDOMAIN, {
+        from: "petadoption@localhost",
+        to: "mycadworld@gmail.com",
+        subject: `Someone is interested in ${doesPetExist.name}`,
+        html: `<h3 style="color: purple; font-size: 30px; font-weight: normal">New contact!</h3>
+                <p>Name: ${ourObject.name}<br>
+                Pet Interested In: ${doesPetExist.name}<br>
+                Email: ${ourObject.email}<br>
+                Message: ${ourObject.comment}<br
+                </p>
+                `,
+    })
+        .then(msg => console.log(msg)) // logs response data
+        .catch(err => console.log(err));
+    /*
     var transport = nodemailer.createTransport({
         host: "sandbox.smtp.mailtrap.io",
         port: 2525,
@@ -95,7 +129,7 @@ exports.submitContact = async function (req, res, next) {
     } catch (error) {
         next(error)
     }
-
+    */
 
 
     res.send("Thanks for sending data to us")
