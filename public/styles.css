@@ -217,7 +217,7 @@ body {
 
 .list-of-pets {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(390px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
   column-gap: 34px;
   row-gap: 16px;
 }
@@ -437,6 +437,7 @@ textarea.form-field {
 
 /* Contact Form Styles */
 .form-overlay {
+  overflow-y: auto;
   background-color: rgba(255, 255, 255, .85);
   backdrop-filter: blur(5px);
   position: fixed;
@@ -445,9 +446,6 @@ textarea.form-field {
   left: 0;
   bottom: 0;
   z-index: 100;
-  display: flex;
-  justify-content: center;
-  align-content: center;
   visibility: hidden;
   opacity: 0;
   transform: scale(1.2);
@@ -471,13 +469,40 @@ textarea.form-field {
   align-self: center;
 
   display: grid;
-  grid-template-columns: 340px 1fr;
+  grid-template-columns: 1fr;
 }
 
 .form-photo {
   order: 1;
   grid-row: 1;
   position: relative;
+  height: 200px;
+}
+
+.form-content {
+  padding: 38px 20px;
+}
+
+@media screen and (min-width: 768px) {
+
+  .form-overlay {
+    display: flex;
+    justify-content: center;
+    align-content: center;
+  }
+
+  .form-content {
+    position: relative;
+    padding: 38px 54px;
+  }
+
+  .form-overlay-inner {
+    grid-template-columns: 340px 1fr;
+  }
+
+  .form-photo {
+    height: auto;
+  }
 }
 
 .form-photo p {
@@ -514,12 +539,8 @@ textarea.form-field {
   justify-content: end;
 }
 
-.form-content {
-  position: relative;
-  padding: 38px 54px;
-}
-
 .close-form-overlay {
+  z-index: 101;
   position: absolute;
   top: 0px;
   right: 15px;
